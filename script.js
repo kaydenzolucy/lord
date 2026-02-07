@@ -113,9 +113,9 @@ function fillDiv(id){
 // MENU
 // ======================
 function showMenu(n){
-  document.querySelectorAll(".box").forEach(b=>b.style.display="none");
+  document.querySelectorAll(".panel").forEach(b=>b.classList.remove("show"));
   const target=document.getElementById("menu"+n);
-  if(target) target.style.display="block";
+  if(target) target.classList.add("show");
   if(n===6) showPriceList();
 }
 
