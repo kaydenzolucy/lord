@@ -11,126 +11,121 @@
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <div class="app">
 
-<div class="app">
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">
+          <img src="download.gif" alt="Joki Lord" />
+        </div>
+        <div class="logo-text">
+          <span class="brand">JOKI LORD</span>
+          <span class="tagline">Elite MLBB Service</span>
+        </div>
+      </div>
 
-<!-- HEADER -->
-<header class="header">
+      <div class="currency-mini">
+        <select id="currency" onchange="changeCurrency()">
+          <option value="IDR">🇮🇩 IDR</option>
+          <option value="MYR">🇲🇾 MYR</option>
+        </select>
+        <div id="rateInfo">Loading rate...</div>
+      </div>
+    </header>
 
-  <div class="logo">
-    <img src="download.gif" class="logo-gif">
-    <div class="logo-text">
-      <span class="brand">JOKI LORD</span>
-      <span class="tagline">Elite MLBB Service</span>
-    </div>
+    <!-- MENU GRID -->
+    <section class="menu-grid">
+      <button onclick="showMenu(1)">⭐ Joki Per Bintang</button>
+      <button onclick="showMenu(2)">🔁 Joki Antar Rank</button>
+      <button onclick="showMenu(3)">🔥 Gendong Per Bintang</button>
+      <button onclick="showMenu(4)">🔥 Gendong Antar Rank</button>
+      <button onclick="showMenu(5)">💰 Estimasi Nominal</button>
+      <button onclick="showMenu(6)">📋 Price List</button>
+      <button class="link-btn" onclick="openLink()">Jokilord</button>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="content">
+
+      <div class="panel" id="menu1">
+        <h2>⭐ Joki Per Bintang</h2>
+        <select id="rank1"></select>
+        <select id="div1"></select>
+        <input type="number" id="star1" placeholder="Bintang sekarang">
+        <input type="number" id="addStar" placeholder="Tambah bintang">
+        <button onclick="hitungPerBintang()">Hitung</button>
+      </div>
+
+      <div class="panel" id="menu2">
+        <h2>🔁 Joki Antar Rank</h2>
+        <h3>Rank Awal</h3>
+        <select id="rankA"></select>
+        <select id="divA"></select>
+        <input type="number" id="starA" placeholder="Bintang">
+
+        <h3>Rank Tujuan</h3>
+        <select id="rankB"></select>
+        <select id="divB"></select>
+        <input type="number" id="starB" placeholder="Bintang">
+
+        <button onclick="hitungAntarRank()">Hitung</button>
+      </div>
+
+      <div class="panel" id="menu3">
+        <h2>🔥 Gendong Per Bintang</h2>
+        <select id="rankG1"></select>
+        <select id="divG1"></select>
+        <input type="number" id="starG1" placeholder="Bintang sekarang">
+        <input type="number" id="addStarG" placeholder="Tambah bintang">
+        <button onclick="hitungGendongBintang()">Hitung</button>
+      </div>
+
+      <div class="panel" id="menu4">
+        <h2>🔥 Gendong Antar Rank</h2>
+        <h3>Rank Awal</h3>
+        <select id="rankGA"></select>
+        <select id="divGA"></select>
+        <input type="number" id="starGA" placeholder="Bintang">
+
+        <h3>Rank Tujuan</h3>
+        <select id="rankGB"></select>
+        <select id="divGB"></select>
+        <input type="number" id="starGB" placeholder="Bintang">
+
+        <button onclick="hitungGendongRank()">Hitung</button>
+      </div>
+
+      <div class="panel" id="menu5">
+        <h2>💰 Estimasi Nominal</h2>
+        <select id="mode">
+          <option value="PRICE">Joki Rank</option>
+          <option value="GENDONG">Gendong</option>
+        </select>
+        <select id="rankE"></select>
+        <select id="divE"></select>
+        <input type="number" id="starE" placeholder="Bintang sekarang">
+        <input type="number" id="nominal" placeholder="Nominal">
+        <button onclick="estimasiNominal()">Estimasi</button>
+      </div>
+
+      <div class="panel" id="menu6">
+        <h2>📋 Price List</h2>
+        <pre id="pricelist"></pre>
+      </div>
+
+      <pre id="hasil" class="result-box"></pre>
+
+    </section>
+
   </div>
 
-  <div class="currency-mini">
-    <select id="currency" onchange="changeCurrency()">
-      <option value="IDR">🇮🇩 IDR</option>
-      <option value="MYR">🇲🇾 MYR</option>
-    </select>
-    <div id="rateInfo">Loading rate...</div>
-  </div>
-
-</header>
-
-<!-- MENU GRID -->
-<section class="menu-grid">
-  <button onclick="showMenu(1)">⭐ Joki Per Bintang</button>
-  <button onclick="showMenu(2)">🔁 Joki Antar Rank</button>
-  <button class="gendong" onclick="showMenu(3)">🔥 Gendong Per Bintang</button>
-  <button class="gendong" onclick="showMenu(4)">🔥 Gendong Antar Rank</button>
-  <button class="green" onclick="showMenu(5)">💰 Estimasi Nominal</button>
-  <button class="purple" onclick="showMenu(6)">📋 Price List</button>
-  <button class="link-btn" onclick="openLink()">🌐 Jokilord</button>
-</section>
-
-<!-- CONTENT -->
-<section class="content">
-
-<div class="panel" id="menu1">
-  <h2>⭐ Joki Per Bintang</h2>
-  <select id="rank1"></select>
-  <select id="div1"></select>
-  <input type="number" id="star1" placeholder="Bintang sekarang">
-  <input type="number" id="addStar" placeholder="Tambah bintang">
-  <button onclick="hitungPerBintang()">Hitung</button>
-</div>
-
-<div class="panel" id="menu2">
-  <h2>🔁 Joki Antar Rank</h2>
-
-  <h3>Rank Awal</h3>
-  <select id="rankA"></select>
-  <select id="divA"></select>
-  <input type="number" id="starA" placeholder="Bintang">
-
-  <h3>Rank Tujuan</h3>
-  <select id="rankB"></select>
-  <select id="divB"></select>
-  <input type="number" id="starB" placeholder="Bintang">
-
-  <button onclick="hitungAntarRank()">Hitung</button>
-</div>
-
-<div class="panel" id="menu3">
-  <h2>🔥 Gendong Per Bintang</h2>
-  <select id="rankG1"></select>
-  <select id="divG1"></select>
-  <input type="number" id="starG1" placeholder="Bintang sekarang">
-  <input type="number" id="addStarG" placeholder="Tambah bintang">
-  <button class="gendong" onclick="hitungGendongBintang()">Hitung</button>
-</div>
-
-<div class="panel" id="menu4">
-  <h2>🔥 Gendong Antar Rank</h2>
-
-  <h3>Rank Awal</h3>
-  <select id="rankGA"></select>
-  <select id="divGA"></select>
-  <input type="number" id="starGA" placeholder="Bintang">
-
-  <h3>Rank Tujuan</h3>
-  <select id="rankGB"></select>
-  <select id="divGB"></select>
-  <input type="number" id="starGB" placeholder="Bintang">
-
-  <button class="gendong" onclick="hitungGendongRank()">Hitung</button>
-</div>
-
-<div class="panel" id="menu5">
-  <h2>💰 Estimasi Nominal</h2>
-  <select id="mode">
-    <option value="PRICE">Joki Rank</option>
-    <option value="GENDONG">Gendong</option>
-  </select>
-  <select id="rankE"></select>
-  <select id="divE"></select>
-  <input type="number" id="starE" placeholder="Bintang sekarang">
-  <input type="number" id="nominal" placeholder="Nominal">
-  <button onclick="estimasiNominal()">Estimasi</button>
-</div>
-
-<div class="panel" id="menu6">
-  <h2>📋 Price List</h2>
-  <pre id="pricelist"></pre>
-</div>
-
-<pre id="hasil" class="result-box"></pre>
-
-</section>
-
-</div>
-
-<script src="script.js"></script>
-<script>
-function openLink(){
-  window.location.href="https://jokilord.com";
-}
-</script>
-
+  <script src="script.js"></script>
+  <script>
+    function openLink(){
+      window.location.href = "https://jokilord.com";
+    }
+  </script>
 </body>
-</html></html>
+</html>
