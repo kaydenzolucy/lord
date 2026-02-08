@@ -2,13 +2,13 @@
 // PRICE & GENDONG
 // ======================
 const PRICE = {
-  Master:3000, GM:4000, Epic:5000, Legend:6000,
-  Mythic:13000, Honor:14000, Glory:20000, Immortal:24000
+  Master:2000, GM:3000, Epic:4000, Legend:5000,
+  Mythic:10000, Honor:10000, Glory:16000, Immortal:20000
 };
 
 const GENDONG = {
-  Epic:9000, Legend:10000, Mythic:15000,
-  Honor:16000, Glory:25000, Immortal:35000
+  Epic:8000, Legend:9000, Mythic:14000,
+  Honor:15000, Glory:22000, Immortal:28000
 };
 
 // ======================
