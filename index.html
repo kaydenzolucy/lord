@@ -5,130 +5,211 @@
   <title>JOKI LORD • Elite MLBB Service</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- GOOGLE FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- GEIST FONT -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/geist-font@latest/style.css">
 
-  <!-- MAIN CSS -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+/* =====================
+GLOBAL
+===================== */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: radial-gradient(circle at top, #1c1f26, #0a0c12);
+  font-family: 'Geist', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  color: #e5e7eb;
+}
+
+.app {
+  max-width: 480px;
+  margin: auto;
+  padding: 14px;
+}
+
+/* =====================
+HEADER
+===================== */
+.header {
+  background: linear-gradient(145deg,#0f1219,#161a22);
+  border-radius: 18px;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 0 25px rgba(120,120,255,.12);
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.logo-gif {
+  width: 64px;
+  height: auto;
+  filter: drop-shadow(0 0 6px rgba(180,200,255,.5));
+}
+
+.brand {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: .12em;
+}
+
+.tagline {
+  font-size: 11px;
+  opacity: .65;
+  letter-spacing: .12em;
+}
+
+/* =====================
+MENU GRID
+===================== */
+.menu-grid {
+  margin-top: 16px;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 10px;
+}
+
+.menu-grid button {
+  background: linear-gradient(145deg,#131720,#1a1f2b);
+  border: 1px solid rgba(255,255,255,.06);
+  border-radius: 14px;
+  padding: 12px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all .25s ease;
+}
+
+.menu-grid button:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 0 14px rgba(120,120,255,.35);
+}
+
+.menu-grid button:active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(120,150,255,.45) 10%, transparent 70%);
+  animation: ripple .5s linear;
+}
+
+@keyframes ripple {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.menu-grid .gendong {
+  background: linear-gradient(135deg,#381010,#801c1c);
+  box-shadow: 0 0 10px rgba(255,80,80,.4);
+}
+
+/* =====================
+PANEL
+===================== */
+.panel {
+  background: linear-gradient(145deg,#0f1219,#151a22);
+  border-radius: 18px;
+  margin-top: 16px;
+  padding: 16px;
+  display: none;
+  animation: fade .3s ease;
+}
+
+@keyframes fade {
+  from {opacity:0;transform:translateY(10px)}
+  to {opacity:1;transform:translateY(0)}
+}
+
+.panel h2 {
+  margin: 0 0 12px;
+  font-size: 15px;
+  letter-spacing: .08em;
+}
+
+.panel select,
+.panel input {
+  width: 100%;
+  background: #0c0f15;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.panel button {
+  width: 100%;
+  background: linear-gradient(135deg,#3b82f6,#6366f1);
+  border: none;
+  border-radius: 14px;
+  padding: 12px;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(120,120,255,.5);
+}
+
+.panel button:hover {
+  transform: scale(1.02);
+}
+
+.result-box {
+  margin-top: 16px;
+  background: #07090e;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: inset 0 0 12px rgba(120,120,255,.15);
+}
+  </style>
 </head>
 
 <body>
 
 <div class="app">
 
-  <!-- HEADER -->
-  <header class="header">
-    <div class="logo">
-      <div class="logo-icon">⚔️</div>
-      <div class="logo-text">
-        <span class="brand">JOKI LORD</span>
-        <span class="tagline">Elite MLBB Service</span>
-      </div>
+<header class="header">
+  <div class="logo">
+    <img src="download.gif" class="logo-gif">
+    <div>
+      <div class="brand">JOKI LORD</div>
+      <div class="tagline">ELITE MLBB SERVICE</div>
     </div>
+  </div>
+</header>
 
-    <div class="currency-mini">
-      <select id="currency" onchange="changeCurrency()">
-        <option value="IDR">🇮🇩 IDR</option>
-        <option value="MYR">🇲🇾 MYR</option>
-      </select>
-      <div id="rateInfo">Loading rate...</div>
-    </div>
-  </header>
+<section class="menu-grid">
+  <button onclick="showMenu(1)">⭐ Joki Per Bintang</button>
+  <button onclick="showMenu(2)">🔁 Joki Antar Rank</button>
+  <button class="gendong" onclick="showMenu(3)">🔥 Gendong Per Bintang</button>
+  <button class="gendong" onclick="showMenu(4)">🔥 Gendong Antar Rank</button>
+  <button onclick="showMenu(5)">💰 Estimasi Nominal</button>
+  <button onclick="showMenu(6)">📋 Price List</button>
+</section>
 
-  <!-- MENU GRID -->
-  <section class="menu-grid">
-    <button onclick="showMenu(1)">⭐ Joki Per Bintang</button>
-    <button onclick="showMenu(2)">🔁 Joki Antar Rank</button>
-    <button class="gendong" onclick="showMenu(3)">🔥 Gendong Per Bintang</button>
-    <button class="gendong" onclick="showMenu(4)">🔥 Gendong Antar Rank</button>
-    <button onclick="showMenu(5)">💰 Estimasi Nominal</button>
-    <button onclick="showMenu(6)">📋 Price List</button>
-    <button class="link-btn" onclick="openLink()">Jokilord</button>
-  </section>
-
-  <!-- CONTENT -->
-  <section class="content">
-
-    <div class="panel" id="menu1">
-      <h2>⭐ Joki Per Bintang</h2>
-      <select id="rank1"></select>
-      <select id="div1"></select>
-      <input type="number" id="star1" placeholder="Bintang sekarang">
-      <input type="number" id="addStar" placeholder="Tambah bintang">
-      <button onclick="hitungPerBintang()">Hitung</button>
-    </div>
-
-    <div class="panel" id="menu2">
-      <h2>🔁 Joki Antar Rank</h2>
-
-      <h3>Rank Awal</h3>
-      <select id="rankA"></select>
-      <select id="divA"></select>
-      <input type="number" id="starA" placeholder="Bintang">
-
-      <h3>Rank Tujuan</h3>
-      <select id="rankB"></select>
-      <select id="divB"></select>
-      <input type="number" id="starB" placeholder="Bintang">
-
-      <button onclick="hitungAntarRank()">Hitung</button>
-    </div>
-
-    <div class="panel" id="menu3">
-      <h2>🔥 Gendong Per Bintang</h2>
-      <select id="rankG1"></select>
-      <select id="divG1"></select>
-      <input type="number" id="starG1" placeholder="Bintang sekarang">
-      <input type="number" id="addStarG" placeholder="Tambah bintang">
-      <button class="gendong" onclick="hitungGendongBintang()">Hitung</button>
-    </div>
-
-    <div class="panel" id="menu4">
-      <h2>🔥 Gendong Antar Rank</h2>
-
-      <h3>Rank Awal</h3>
-      <select id="rankGA"></select>
-      <select id="divGA"></select>
-      <input type="number" id="starGA" placeholder="Bintang">
-
-      <h3>Rank Tujuan</h3>
-      <select id="rankGB"></select>
-      <select id="divGB"></select>
-      <input type="number" id="starGB" placeholder="Bintang">
-
-      <button class="gendong" onclick="hitungGendongRank()">Hitung</button>
-    </div>
-
-    <div class="panel" id="menu5">
-      <h2>💰 Estimasi Nominal</h2>
-      <select id="mode">
-        <option value="PRICE">Joki Rank</option>
-        <option value="GENDONG">Gendong</option>
-      </select>
-      <select id="rankE"></select>
-      <select id="divE"></select>
-      <input type="number" id="starE" placeholder="Bintang sekarang">
-      <input type="number" id="nominal" placeholder="Nominal">
-      <button onclick="estimasiNominal()">Estimasi</button>
-    </div>
-
-    <div class="panel" id="menu6">
-      <h2>📋 Price List</h2>
-      <pre id="pricelist"></pre>
-    </div>
-
-    <pre id="hasil" class="result-box"></pre>
-
-  </section>
+<section class="content">
+  <div id="menu1" class="panel"><h2>⭐ Joki Per Bintang</h2></div>
+  <div id="menu2" class="panel"><h2>🔁 Joki Antar Rank</h2></div>
+  <div id="menu3" class="panel"><h2>🔥 Gendong Per Bintang</h2></div>
+  <div id="menu4" class="panel"><h2>🔥 Gendong Antar Rank</h2></div>
+  <div id="menu5" class="panel"><h2>💰 Estimasi Nominal</h2></div>
+  <div id="menu6" class="panel"><h2>📋 Price List</h2></div>
+</section>
 
 </div>
 
-<script src="script.js"></script>
 <script>
-  function openLink(){
-    window.location.href = "https://jokilord.com";
-  }
+function showMenu(id){
+  document.querySelectorAll(".panel").forEach(p=>p.style.display="none");
+  document.getElementById("menu"+id).style.display="block";
+}
 </script>
 
 </body>
-  </html>
+</html>
