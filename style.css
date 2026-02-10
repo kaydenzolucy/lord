@@ -42,40 +42,45 @@ HEADER
 ========================= */
 .header{
 display:flex;
-justify-content:space-between;
 align-items:center;
+gap:12px;
 margin-bottom:26px;
 padding:14px 16px;
 border-radius:18px;
 background:linear-gradient(180deg,#0c1219,#070b10);
 border:1px solid rgba(255,255,255,.06);
-box-shadow:0 0 25px rgba(0,0,0,.8);
+box-shadow:0 0 22px rgba(0,0,0,.85);
 }
 
-.logo{display:flex;align-items:center;gap:12px}
+.logo{
+display:flex;
+align-items:center;
+gap:10px;
+flex:1;
+}
 
 .logo-icon img{
 width:185px;
 height:auto;
-filter:drop-shadow(0 0 12px rgba(109,139,255,.25));
+filter:drop-shadow(0 0 10px rgba(109,139,255,.25));
 }
 
-/* === SHIMMER TEXT EFFECT === */
+/* === SHIMMER TEXT === */
+.logo-text{
+margin-left:2px;
+}
+
 .logo-text .brand{
 display:inline-block;
 font-size:20px;
 font-weight:800;
-letter-spacing:1.6px;
-background:linear-gradient(120deg,
-#7da2ff 10%,
-#ffffff 30%,
-#7da2ff 50%,
-#6d8bff 70%);
+letter-spacing:1.5px;
+background:linear-gradient(120deg,#7da2ff 10%,#ffffff 30%,#7da2ff 50%,#6d8bff 70%);
 background-size:200% auto;
 color:transparent;
 background-clip:text;
 -webkit-background-clip:text;
-animation:shimmer 3.5s linear infinite;
+animation:shimmer 3.8s linear infinite;
 }
 
 @keyframes shimmer{
@@ -84,24 +89,31 @@ to{background-position:200% center}
 
 .logo-text .tagline{
 display:block;
-font-size:11px;
-letter-spacing:1px;
+font-size:10.5px;
+letter-spacing:.8px;
 color:var(--silver-soft);
 }
 
 /* =========================
-CURRENCY (MINIMAL)
+CURRENCY MINI (HORIZONTAL)
 ========================= */
 .currency-mini{
 display:flex;
-flex-direction:column;
-align-items:flex-end;
-gap:2px;
-padding:4px 8px;
-border-radius:9px;
+flex-direction:row;
+align-items:center;
+gap:8px;
+padding:6px 10px;
+border-radius:12px;
 background:#080d13;
 border:1px solid rgba(255,255,255,.08);
-font-size:10px;
+min-width:150px;
+justify-content:space-between;
+}
+
+.currency-mini span{
+font-size:9.5px;
+opacity:.85;
+letter-spacing:.4px;
 }
 
 .currency-mini select{
@@ -110,7 +122,7 @@ border:1px solid rgba(255,255,255,.12);
 color:var(--silver);
 border-radius:7px;
 font-size:10px;
-padding:3px 5px;
+padding:3px 6px;
 }
 
 /* =========================
@@ -124,7 +136,7 @@ margin-bottom:18px;
 }
 
 .menu-grid button{
-min-height:62px;
+min-height:60px;
 padding:12px;
 border-radius:18px;
 border:1px solid rgba(255,255,255,.06);
@@ -133,22 +145,23 @@ font-weight:600;
 color:var(--silver);
 cursor:pointer;
 background:linear-gradient(145deg,#101722,#070b10);
-box-shadow:0 8px 24px rgba(0,0,0,.85);
-transition:transform .18s ease, box-shadow .18s ease;
+box-shadow:0 8px 22px rgba(0,0,0,.85);
+transition:transform .12s ease, box-shadow .12s ease, background .12s ease;
 will-change:transform;
 }
 
 .menu-grid button:hover{
 transform:translateY(-2px) scale(1.02);
-box-shadow:0 0 16px var(--accent-glow);
+box-shadow:0 0 14px var(--accent-glow);
 }
 
 .menu-grid button:active{
-transform:scale(.97);
+transform:scale(.95);
+box-shadow:0 0 14px var(--accent-glow);
 }
 
 /* =========================
-PANEL
+PANEL (ULTRA SMOOTH)
 ========================= */
 .panel{
 display:none;
@@ -157,17 +170,27 @@ padding:18px;
 border-radius:18px;
 background:linear-gradient(180deg,#0d141d,#070b10);
 border:1px solid rgba(255,255,255,.06);
-box-shadow:0 12px 38px rgba(0,0,0,.85);
+box-shadow:0 12px 36px rgba(0,0,0,.85);
+will-change:transform,opacity;
+transform:translateZ(0);
 }
 
 .panel.show{
 display:block;
-animation:panelIn .3s cubic-bezier(.4,0,.2,1);
+animation:panelSmooth .25s cubic-bezier(.25,.8,.25,1);
 }
 
-@keyframes panelIn{
-from{opacity:0;transform:translateY(10px) scale(.98)}
-to{opacity:1;transform:none}
+@keyframes panelSmooth{
+from{
+opacity:0;
+transform:translateY(14px) scale(.96);
+filter:blur(2px);
+}
+to{
+opacity:1;
+transform:none;
+filter:blur(0);
+}
 }
 
 /* =========================
@@ -202,12 +225,12 @@ background:linear-gradient(145deg,#101722,#070b10);
 color:var(--silver);
 font-weight:600;
 cursor:pointer;
-transition:.18s ease;
+transition:.15s ease;
 }
 
 .panel button:hover{
 transform:translateY(-2px);
-box-shadow:0 0 14px var(--accent-glow);
+box-shadow:0 0 12px var(--accent-glow);
 }
 
 .panel button:active{
@@ -243,5 +266,5 @@ RESPONSIVE
 @media(max-width:420px){
 .logo-text .brand{font-size:18px}
 .menu-grid button{font-size:13px}
-.logo-icon img{width:170px}
+.logo-icon img{width:175px}
 }
